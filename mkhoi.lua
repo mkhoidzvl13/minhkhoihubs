@@ -6277,4 +6277,7 @@ Tabs.Misc:AddButton({
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
 	end
+	DiscordLib:Notification("Thông Báo" , "anh iu bích ngọc" , 6 ,16152222934 )
+	 end
+
 })
