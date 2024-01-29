@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
-    Title = "minhkhoi Hub",
+    Title = "zeus hub",
     SubTitle = "anh iu bich ngoc",
     TabWidth = 160,
     Size = UDim2.fromOffset(450, 300),
@@ -6242,7 +6242,7 @@ Tabs.Misc:AddButton({
 })
 
 Tabs.Misc:AddParagraph({
-	Title = "Open Ui",
+	Title = "anh iu bích ngọc",
 	Content = ""
 
 })
