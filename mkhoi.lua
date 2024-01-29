@@ -3566,7 +3566,7 @@ spawn(function()
 if Third_Sea then
 
       Tabs.Main:AddParagraph({
-        Title = "Rough Sea (bảo trì)",
+        Title = "bảo trì",
         Content = "Auto rough sea"
     })
 
