@@ -6288,4 +6288,11 @@ Tabs.info:AddButton({
  setclipboard("https://www.facebook.com/61551675837476")
   DiscordLib:Notification("Thông Báo" , "Đã Sao Chép Link Facebook" , 10 ,11816162894 )
 	end
+Tabs.info:AddButton({
+	Title = "click để lấy link discord",
+	Description = "",
+	Callback = function()
+ setclipboard("https://discord.gg/GYvqFUEr")
+  DiscordLib:Notification("Thông Báo" , "Đã Sao Chép Link discord" , 10 ,11816162894 )
+	end
 })
