@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "zeus hub",
-    SubTitle = "anh iu bich ngoc",
+    SubTitle = "my birthday: 20-10-2009",
     TabWidth = 160,
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -3567,7 +3567,7 @@ if Third_Sea then
 
       Tabs.Main:AddParagraph({
         Title = "Rough Sea",
-        Content = "Auto rough sea"
+        Content = "đang bảo trì"
     })
 
 
