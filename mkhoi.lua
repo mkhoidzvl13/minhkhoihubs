@@ -3,8 +3,8 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
-    Title = "zeus hub",
-    SubTitle = "my birthday: 20-10-2009",
+    Title = "minhkhoi Hub",
+    SubTitle = "anh iu bich ngoc",
     TabWidth = 160,
     Size = UDim2.fromOffset(450, 300),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -3567,7 +3567,7 @@ if Third_Sea then
 
       Tabs.Main:AddParagraph({
         Title = "Rough Sea",
-        Content = "đang bảo trì"
+        Content = "Auto rough sea"
     })
 
 
@@ -6242,7 +6242,7 @@ Tabs.Misc:AddButton({
 })
 
 Tabs.Misc:AddParagraph({
-	Title = "anh iu bích ngọc",
+	Title = "Open Ui",
 	Content = ""
 
 })
