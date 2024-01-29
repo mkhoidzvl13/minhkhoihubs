@@ -6279,3 +6279,13 @@ Tabs.Misc:AddButton({
 		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
 	end
 })
+--facebook
+
+Tabs.facebook:AddButton({
+	Title = "facebook",
+	Description = "",
+	Callback = function()
+ setclipboard("https://www.facebook.com/61551675837476")
+  DiscordLib:Notification("Thông Báo" , "Đã Sao Chép Link Facebook" , 10 ,11816162894 )
+	end
+})
