@@ -6296,5 +6296,6 @@ Tabs.info:AddButton({
 	Callback = function()
  setclipboard("https://discord.gg/GYvqFUEr")
   DiscordLib:Notification("Thông Báo" , "Đã Sao Chép Link discord" , 10 ,11816162894 )
+Icon = "/magnifying-glass" }),
 	end
 })
