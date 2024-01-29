@@ -22,6 +22,7 @@ local Tabs = {
     Race = Window:AddTab({ Title = "Race V4", Icon = "chevrons-right" }),
     Shop = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
 	Misc = Window:AddTab({ Title = "Misc", Icon = "list-plus" }),
+	facebook = Window:AddTab({ Title = "facebook", Icon = "facebook" }),
 }
 local Options = Fluent.Options
 
