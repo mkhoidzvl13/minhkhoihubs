@@ -3566,7 +3566,7 @@ spawn(function()
 if Third_Sea then
 
       Tabs.Main:AddParagraph({
-        Title = "Rough Sea ( đang bảo trì)",
+        Title = "Rough Sea",
         Content = "Auto rough sea"
     })
 
@@ -6064,6 +6064,7 @@ Tabs.Shop:AddButton({
 --------------------------------------------------------------------------------------------------------------------------------------------
 --misc
 
+Tabs.Misc:AddButton({
 	Title = "Rejoin Server",
 	Description = "",
 	Callback = function()
@@ -6189,6 +6190,7 @@ Number = math.random(1, 1000000)
 
 
 
+Tabs.Misc:AddButton({
 	Title = "Hop Server Low Player",
 	Description = "",
 	Callback = function()
@@ -6275,5 +6277,4 @@ Tabs.Misc:AddButton({
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
 	end
-
 })
