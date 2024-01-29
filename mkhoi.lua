@@ -2574,15 +2574,7 @@ local posZ = 0
         Callback = function()
             FPSBooster()
         end
-    Tabs.Main:AddButton({
-        Title = "whitescreen",
-        Description = "fix lag",			
-    _G.WhiteScreen = a
-    if _G.WhiteScreen == true then
-    game:GetService("RunService"):Set3dRenderingEnabled(false)
-    elseif _G.WhiteScreen == false then
-    game:GetService("RunService"):Set3dRenderingEnabled(true)
-    end
+
     function FPSBooster()
         local decalsyeeted = true
         local g = game
