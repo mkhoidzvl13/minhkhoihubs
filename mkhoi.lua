@@ -6282,7 +6282,7 @@ Tabs.Misc:AddButton({
 --facebook
 
 Tabs.facebook:AddButton({
-	Title = "facebook",
+	Title = "click để lấy link fb",
 	Description = "",
 	Callback = function()
  setclipboard("https://www.facebook.com/61551675837476")
