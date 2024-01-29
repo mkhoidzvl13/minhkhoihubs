@@ -6278,8 +6278,4 @@ Tabs.Misc:AddButton({
 		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
 	end
 })
-Tabs.Misc:AddButton({
-	Title = "bích ngọc béooo",
-	
-	end
-})
+
