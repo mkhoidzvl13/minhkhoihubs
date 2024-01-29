@@ -6280,7 +6280,7 @@ Tabs.Misc:AddButton({
 	end
 })
 --info
-
+Setting:Label("create minh khoi 209")
 Tabs.info:AddButton({
 	Title = "click để lấy link fb",
 	Description = "",
