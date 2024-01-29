@@ -2574,7 +2574,9 @@ local posZ = 0
         Callback = function()
             FPSBooster()
         end
-    })
+    Tabs.Main:AddButton({
+        Title = "whitescreen",
+        Description = "fix lag",			
     _G.WhiteScreen = a
     if _G.WhiteScreen == true then
     game:GetService("RunService"):Set3dRenderingEnabled(false)
