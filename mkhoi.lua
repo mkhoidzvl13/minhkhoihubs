@@ -6063,7 +6063,9 @@ Tabs.Shop:AddButton({
 })
 --------------------------------------------------------------------------------------------------------------------------------------------
 --misc
-	Title = "anh iu bích ngọc"
+	Title = "anh iu bích ngọc",
+	end
+})
 	Title = "Rejoin Server",
 	Description = "",
 	Callback = function()
