@@ -3566,7 +3566,7 @@ spawn(function()
 if Third_Sea then
 
       Tabs.Main:AddParagraph({
-        Title = "bảo trì",
+        Title = "Rough Sea",
         Content = "Auto rough sea"
     })
 
@@ -6276,10 +6276,5 @@ Tabs.Misc:AddButton({
 		}
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
-	end
-})
-Tabs.Misc:AddButton({
-	Title = "bích ngọc béooo",
-	
 	end
 })
