@@ -15,14 +15,14 @@ local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "home" }),
     Setting = Window:AddTab({ Title = "Setting", Icon = "settings" }),
     Stats = Window:AddTab({ Title = "Stats", Icon = "plus-circle" }),
-    Player = Window:AddTab({ Title = "Player", Icon = "user" }),
+    Player = Window:AddTab({ Title = "Player", Icon = "baby" }),
     Teleport = Window:AddTab({ Title = "Teleport", Icon = "palmtree" }),
     Fruit = Window:AddTab({ Title = "Devil Fruit", Icon = "cherry" }),
     Raid = Window:AddTab({ Title = "Dungeon", Icon = "swords" }),
     Race = Window:AddTab({ Title = "Race V4", Icon = "chevrons-right" }),
     Shop = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
 	Misc = Window:AddTab({ Title = "Misc", Icon = "list-plus" }),
-	info = Window:AddTab({ Title = "info", Icon = "check" }),
+	info = Window:AddTab({ Title = "info", Icon = "user" }),
 }
 local Options = Fluent.Options
 
@@ -6287,4 +6287,25 @@ Tabs.info:AddButton({
  setclipboard("https://www.facebook.com/61551675837476")
   DiscordLib:Notification("Thông Báo" , "Đã Sao Chép Link Facebook" , 10 ,11816162894 )
 	end
+		 spawn(function()
+ while wait() do
+ if _G.WhiteScreen then
+ for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
+ if v.Name == "CurvedRing" or v.Name == "SlashHit" or v.Name == "DamageCounter" or v.Name == "SwordSlash" or v.Name == "SlashTail" or v.Name == "Sounds" then
+ v:Destroy()
+ end
+ end
+ end
+ end
+ end)
+
+Setting:Toggle("Màn Hình Treo Farm [ Mượt Hơn ]",_G.WhiteScreen,function(value)
+ _G.WhiteScreen = value
+
+ if _G.WhiteScreen == true then
+ game:GetService("RunService"):Set3dRenderingEnabled(false)
+ elseif _G.WhiteScreen == false then
+ game:GetService("RunService"):Set3dRenderingEnabled(true)
+ end
+end)
 })
