@@ -6063,7 +6063,14 @@ Tabs.Shop:AddButton({
 })
 --------------------------------------------------------------------------------------------------------------------------------------------
 --misc
+Setting:Label("anh iu bích ngọc")
 
+Setting:Line()
+
+Setting:Button("Sao Chép Link Facebook",function()
+ 
+ setclipboard("https://www.facebook.com/61551675837476")
+  DiscordLib:Notification("Thông Báo" , "Đã Sao Chép Link Facebook" , 10 ,11816162894 )
 Tabs.Misc:AddButton({
 	Title = "Rejoin Server",
 	Description = "",
