@@ -6277,24 +6277,5 @@ Tabs.Misc:AddButton({
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
 	end
-	DiscordLib:Notification("Thông Báo" , "anh iu bích ngọc" , 6 ,16152222934 )
-	DiscordLib:Notification("Thông Báo" , "Link Facebook Ở Phần Setting" , 6 ,16152222934 )
- local UserInputService = game:GetService("UserInputService")
- local TweenService = game:GetService("TweenService")
- 
- local function MakeDraggable(topbarobject, object)
- local Dragging = nil
- local DragInput = nil
- local DragStart = nil
- local StartPosition = nil
- 
- local function Update(input)
- local Delta = input.Position - DragStart
- local pos = UDim2.new(StartPosition.X.Scale, StartPosition.X.Offset + Delta.X, StartPosition.Y.Scale, StartPosition.Y.Offset + Delta.Y)
- local Tween = TweenService:Create(object, TweenInfo.new(0.15), {
-  Position = pos
- })
- Tween:Play()
- end
 
 })
