@@ -2574,6 +2574,7 @@ local posZ = 0
         Callback = function()
             FPSBooster()
         end
+    })
 
     function FPSBooster()
         local decalsyeeted = true
@@ -3565,7 +3566,7 @@ spawn(function()
 if Third_Sea then
 
       Tabs.Main:AddParagraph({
-        Title = "Rough Sea",
+        Title = "đang bảo  trì",
         Content = "Auto rough sea"
     })
 
