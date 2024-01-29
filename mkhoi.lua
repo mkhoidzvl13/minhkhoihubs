@@ -6279,9 +6279,9 @@ Tabs.Misc:AddButton({
 		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
 	end
 })
---facebook
+--info
 
-Tabs.facebook:AddButton({
+Tabs.info:AddButton({
 	Title = "click để lấy link fb",
 	Description = "",
 	Callback = function()
