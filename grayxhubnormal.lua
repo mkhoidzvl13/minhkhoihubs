@@ -114,7 +114,7 @@ _G.Settings = {
 
 		["Select Weapon"] = {},
 --DestCommunity
---https://discord.gg/mWyKB9GPbE
+--https://discord.gg/Frwtfttk
 
 		--[Misc Configs]
 		["Auto Haki"] = true,
