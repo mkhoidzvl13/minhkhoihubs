@@ -725,7 +725,7 @@ function LoadFunction()
 					TweenInfo.new(.5, Enum.EasingStyle.Quart, Enum.EasingDirection.InOut),
 					{TextTransparency = 0.2}
 				):Play()
-				TitleLoad.Text = "Get Patch Unique Script Version : 1.0.0"
+				TitleLoad.Text = "Get Patch Grayx Script Version : 1.0.0"
 				wait(0.35)
 				TweenService:Create(
 					TitleLoad,
@@ -738,7 +738,7 @@ function LoadFunction()
 					TweenInfo.new(.45, Enum.EasingStyle.Quart, Enum.EasingDirection.InOut),
 					{TextTransparency = 0.2}
 				):Play()
-				TitleLoad.Text = "Welcome to Unique Script | Premium Edition"
+				TitleLoad.Text = "Welcome to Grayx Script | normal Edition"
 				TitleLoad.Font = Enum.Font.GothamBold
 				TitleLoad.TextTransparency = 0
 				wait(3)
@@ -3030,16 +3030,16 @@ end
 
 function LoadSettings()
 	if readfile and writefile and isfile and isfolder then
-		if not isfolder("Unique Hub Premium Scripts") then
-			makefolder("Unique Hub Premium Scripts")
+		if not isfolder("Grayx Hub normal") then
+			makefolder("Grayx Hub normal")
 		end
-		if not isfolder("Unique Hub Premium Scripts/Blox Fruits/") then
-			makefolder("Unique Hub Premium Scripts/Blox Fruits/")
+		if not isfolder("Grayx Hub normal/Blox Fruits/") then
+			makefolder("Grayx Hub normal/Blox Fruits/")
 		end
-		if not isfile("Unique Hub Premium Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
-			writefile("Unique Hub Premium Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(_G.Settings))
+		if not isfile("Grayx Hub normal/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
+			writefile("Grayx Hub normal Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(_G.Settings))
 		else
-			local Decode = game:GetService("HttpService"):JSONDecode(readfile("Unique Hub Premium Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
+			local Decode = game:GetService("HttpService"):JSONDecode(readfile("Grayx Hub normal Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
 			for i,v in pairs(Decode) do
 				_G.Settings[i] = v
 			end
@@ -3051,15 +3051,15 @@ end
 
 function SaveSettings()
 	if readfile and writefile and isfile and isfolder then
-		if not isfile("Unique Hub Premium Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
+		if not isfile("Grayx Hub normal/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
 			LoadSettings()
 		else
-			local Decode = game:GetService("HttpService"):JSONDecode(readfile("Unique Hub Premium Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
+			local Decode = game:GetService("HttpService"):JSONDecode(readfile("Grayx Hub normal/" .. game.Players.LocalPlayer.Name .. ".json"))
 			local Array = {}
 			for i,v in pairs(_G.Settings) do
 				Array[i] = v
 			end
-			writefile("Unique Hub Premium Scripts/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(Array))
+			writefile("Grayx Hub normal/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(Array))
 		end
 	else
 		return warn("Status : Undetected Executor")
@@ -14581,7 +14581,7 @@ end})
 
 -- local Page_Credits = Credits.page()
 
--- local CreditL = Page_Credits.Label({Title = "Made By Unique Team"})
+-- local CreditL = Page_Credits.Label({Title = "Made By Grayx Team"})
 
 -- CreditL.Color(Color3.fromRGB(255, 0, 127))
 
@@ -14812,7 +14812,7 @@ function WebHookLog:WebHookKaiTanSend(WebHookUrl)
 	end
 
 	local Embeds = {{
-		["title"] = "**Unique Webhooks Status**",
+		["title"] = "**Grayx Webhooks Status**",
 		["color"] = tonumber(0xD936FF),
 		["fields"] = {
 			{
@@ -14936,14 +14936,14 @@ function WebHookLog:WebHookKaiTanSend(WebHookUrl)
 	local Message
 	if _G.SendWebHookPing then
 		Message = {
-			['username'] = "UniqueHub Webhook",
+			['username'] = "Grayx Webhook",
 			["avatar_url"] = "https://images-ext-1.discordapp.net/external/HJVOSFvdh4-XH667K_VbrYWQofDzu1EbUfRYpsrRT2A/%3Fsize%3D4096/https/cdn.discordapp.com/avatars/1002583645636284506/3bfcd36c029f0f122d63f75c4741159b.png?width=676&height=676",
 			["content"] = "@everyone",
 			["embeds"] = Embeds,
 		}
 	else
 		Message = {
-			['username'] = "UniqueHub Webhook",
+			['username'] = "Grayx Webhook",
 			["avatar_url"] = "https://images-ext-1.discordapp.net/external/HJVOSFvdh4-XH667K_VbrYWQofDzu1EbUfRYpsrRT2A/%3Fsize%3D4096/https/cdn.discordapp.com/avatars/1002583645636284506/3bfcd36c029f0f122d63f75c4741159b.png?width=676&height=676",
 			["embeds"] = Embeds,
 		}
@@ -15277,7 +15277,7 @@ spawn(function()
 		if _G.Settings.Misc['Auto Rejoin'] then
 			_G.Settings.Misc['Auto Rejoin'] = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
 				if child.Name == 'ErrorPrompt' and child:FindFirstChild('MessageArea') and child.MessageArea:FindFirstChild("ErrorFrame") then
-					print("Unique | Rejoin!")
+					print("Grayx | Rejoin!")
 					game:GetService("TeleportService"):Teleport(game.PlaceId)
 				end
 			end)
