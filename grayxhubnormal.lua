@@ -444,7 +444,7 @@ LoadButton.Position = UDim2.new(0.5, 0, 0.5, 0)
 LoadButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 LoadButton.BackgroundTransparency = 1.000
 LoadButton.Size = UDim2.new(0, 70, 0, 70)
-LoadButton.Image = "http://www.roblox.com/asset/?id=10731738718"
+LoadButton.Image = "http://www.roblox.com/asset/?id=16364791027"
 LoadButton.ImageTransparency = 1
 
 local ClickFrame = Instance.new("Frame")
@@ -460,7 +460,7 @@ local SoundClick = Instance.new("Sound")
 
 SoundClick.Name = "Sound Effect"
 SoundClick.Parent = Load
-SoundClick.SoundId = "rbxassetid://130785805"
+SoundClick.SoundId = "rbxassetid://16364791027"
 SoundClick.Volume = 1
 
 local Blur = Instance.new("BlurEffect")
@@ -575,7 +575,7 @@ LoadScrollbar.AnchorPoint = Vector2.new(0.5,0.5)
 LoadScrollbar.BackgroundTransparency = 1.000
 LoadScrollbar.Position = UDim2.new(0.5, 0, 0.5, 0)
 LoadScrollbar.Size = UDim2.new(0, 30, 0, 30)
-LoadScrollbar.Image = "http://www.roblox.com/asset/?id=6031097225"
+LoadScrollbar.Image = "http://www.roblox.com/asset/?id=16364791027"
 LoadScrollbar.ImageTransparency = 1
 LoadScrollbar.Visible = false
 
@@ -613,7 +613,7 @@ Title.BackgroundTransparency = 1.000
 Title.Position = UDim2.new(0.5, 0, 0.280000001, 0)
 Title.Size = UDim2.new(0, 384, 0, 30)
 Title.Font = Enum.Font.GothamBold
-Title.Text = "Soul Hub"
+Title.Text = "Grayx Hub"
 Title.TextTransparency = 1
 Title.TextColor3 = Color3.fromRGB(255, 0, 127)
 Title.TextSize = 14.000
