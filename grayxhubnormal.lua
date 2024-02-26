@@ -66,7 +66,7 @@ end
 local Options = Fluent.Options
 
 notify("Thanks for using Grayx Hub!")
-notify("Inspired by Amir (wer denn sunst)")
+notify("developer Nguyen Minh Khoi")
 
 Tabs.Main:AddSection("Main")
 local autoparry = Tabs.Main:AddToggle("autoparry", {Title = "Auto Parry", Default = false })
