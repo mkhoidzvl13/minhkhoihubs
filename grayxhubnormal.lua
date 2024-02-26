@@ -1,209 +1,339 @@
-local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+--[[
 
-local PhantomForcesWindow = Library:NewWindow("Grayx hub")
+here would be the whitelist stuff
 
-local KillingCheats = PhantomForcesWindow:NewSection("🎯 Combat")
+--]]
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
-KillingCheats:CreateButton("Auto Parry X", function()
-local Debug = false -- Set this to true if you want my debug output.
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Players = game:GetService("Players")
+local Window = Fluent:CreateWindow({
+	Title = "Ruby Hub",
+	SubTitle = "by Deni210",
+	TabWidth = 160,
+	Size = UDim2.fromOffset(580, 460),
+	Acrylic = true,
+	Theme = "Dark",
+	MinimizeKey = Enum.KeyCode.LeftControl
+})
+local Tabs = {
+	Main = Window:AddTab({ Title = "Main", Icon = "rbxassetid://14521909814" }),
+	farmsettings = Window:AddTab({ Title = "Farming Settings", Icon = "rbxassetid://14521909814" }),
+	Settings = Window:AddTab({ Title = "UI Settings", Icon = "settings" })
+}
+local rubyhub = {
+	autoparrying = false,
+	stayunderground = true,
+	legitautoparry = false,
+	openexplosion = false,
+	opensword = false,
+	selectffa = false,
+	select2v2 = false,
+	select4v4 = false,
+	dontkillonstandoff = {
+	
+	},
+}
 
-local Player = Players.LocalPlayer or Players.PlayerAdded:Wait()
-local Remotes = ReplicatedStorage:WaitForChild("Remotes", 9e9) -- A second argument in waitforchild what could it mean?
-local Balls = workspace:WaitForChild("Balls", 9e9)
-
--- Functions
-
-local function print(...) -- Debug print.
-    if Debug then
-        warn(...)
-    end
+function notify(title, content)
+	if title and not content then content = title; title = "Ruby Hub" end
+	Fluent:Notify({
+		Title = title,
+		Content = content,
+		Duration = 5
+	})
 end
 
-local function VerifyBall(Ball) -- Returns nil if the ball isn't a valid projectile; true if it's the right ball.
-    if typeof(Ball) == "Instance" and Ball:IsA("BasePart") and Ball:IsDescendantOf(Balls) and Ball:GetAttribute("realBall") == true then
-        return true
-    end
+function islpalive()
+	local found = false
+	for i, v in pairs(workspace.Alive:GetChildren()) do
+		if v.Name == game.Players.LocalPlayer.Name then found = true end	
+	end
+	return found
 end
 
-local function IsTarget() -- Returns true if we are the current target.
-    return (Player.Character and Player.Character:FindFirstChild("Highlight"))
+function isindontkill(player)
+	local dontkillname = player.Name
+	local dontkill = false
+	for i, v in pairs(rubyhub.dontkillonstandoff) do
+		if v == dontkillname then
+			dontkill = true
+		end
+	end
+	return dontkill
 end
 
-local function Parry() -- Parries.
-    Remotes:WaitForChild("ParryButtonPress"):Fire()
-end
+local Options = Fluent.Options
 
--- The actual code
+notify("Thanks for using Ruby Hub!")
+notify("Inspired by Amir (wer denn sunst)")
 
-Balls.ChildAdded:Connect(function(Ball)
-    if not VerifyBall(Ball) then
-        return
-    end
-    
-    print(`Ball Spawned: {Ball}`)
-    
-    local OldPosition = Ball.Position
-    local OldTick = tick()
-    
-    Ball:GetPropertyChangedSignal("Position"):Connect(function()
-        if IsTarget() then -- No need to do the math if we're not being attacked.
-            local Distance = (Ball.Position - workspace.CurrentCamera.Focus.Position).Magnitude
-            local Velocity = (OldPosition - Ball.Position).Magnitude -- Fix for .Velocity not working. Yes I got the lowest possible grade in accuplacer math.
-            
-            print(`Distance: {Distance}\nVelocity: {Velocity}\nTime: {Distance / Velocity}`)
-        
-            if (Distance / Velocity) <= 10 then -- Sorry for the magic number. This just works. No, you don't get a slider for this because it's 2am.
-                Parry()
-            end
-        end
-        
-        if (tick() - OldTick >= 1/60) then -- Don't want it to update too quickly because my velocity implementation is aids. Yes, I tried Ball.Velocity. No, it didn't work.
-            OldTick = tick()
-            OldPosition = Ball.Position
-        end
-    end)
+Tabs.Main:AddSection("Main")
+local autoparry = Tabs.Main:AddToggle("autoparry", {Title = "Auto Parry", Default = false })
+autoparry:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.autoparrying = true
+		while toggled and task.wait() do
+			if rubyhub.autoparrying then
+				if islpalive() then
+					if #game.Players:GetPlayers() >= 4 then
+						for i, ball in next, workspace.Balls:GetChildren() do
+							if ball then
+								if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+									if not rubyhub.legitautoparry then
+										if ball.Color == Color3.fromRGB(255, 0, 4) then
+											if rubyhub.stayunderground then
+												if timer < 100 then
+													game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame * CFrame.new(3, -10.6343, (ball.Velocity).Magnitude * -0.5)
+												elseif timer > 100 and timer < 200 then
+													game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame * CFrame.new(3, -9.6343, (ball.Velocity).Magnitude * -0.5)
+												elseif timer > 200 then
+													game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame * CFrame.new(3, 8.481, (ball.Velocity).Magnitude * -0.5)
+												end
+											end
+										else
+											if rubyhub.stayunderground then
+												game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(ball.Position.X, -16.6343, ball.Position.z)
+											else
+												game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(ball.Position.X, ball.Position.y + 5, ball.Position.z)
+											end
+										end
+										if ball.Color ~= Color3.fromRGB(128, 128, 128) and ball.Color ~= Color3.fromRGB(0, 17, 165) then
+											timer = timer + 1
+											local alivecount = #workspace.Alive:GetChildren()
+											local target = "fwefgwefgwez8uguzwgfuzwegufzdgwezufgewuzfgezgfuwzguzegfuzwegfuzgrufzwegfuziwrgfuzwegrufz"
+											if alivecount == 2 then
+												for i, player in pairs(workspace.Alive:GetChildren()) do
+													if player.Name:lower() ~= game.Players.LocalPlayer.Name:lower() then
+														target = player
+													end
+												end
+											end
+											if not isindontkill(target) then
+												game:GetService("ReplicatedStorage").Remotes.ParryButtonPress:Fire()
+											end
+										else
+											timer = 0
+										end
+									else
+										if ball.Color == Color3.fromRGB(255, 0, 4) then
+											local BallVelocity = ball.Velocity.Magnitude
+											local BallPosition = ball.Position
+
+											local PlayerPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+
+											local Distance = (BallPosition - PlayerPosition).Magnitude
+											local PingAccountability = BallVelocity * (game.Stats.Network.ServerStatsItem["Data Ping"]:GetValue() / 1000)
+
+											Distance -= PingAccountability
+											Distance -= 3.7
+
+											local Hit = Distance / BallVelocity
+											local alivecount = #workspace.Alive:GetChildren()
+											local target = "fwefgwefgwez8uguzwgfuzwegufzdgwezufgewuzfgezgfuwzguzegfuzwegfuzgrufzwegfuziwrgfuzwegrufz"
+											if alivecount == 2 then
+												for i, player in pairs(workspace.Alive:GetChildren()) do
+													if player.Name:lower() ~= game.Players.LocalPlayer.Name:lower() then
+														target = player
+													end
+												end
+											end
+											if not isindontkill(target) then
+												if Hit <= 0.5 then
+													game:GetService("ReplicatedStorage").Remotes.ParryButtonPress:Fire()
+												end
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	else
+		rubyhub.autoparrying = false
+	end
 end)
+Tabs.Main:AddSection("Crates")
+local autoexplosion = Tabs.Main:AddToggle("autoexplosion", {Title = "Auto Open Explosion Crate", Default = false })
+autoexplosion:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.openexplosion = true
+	else
+		rubyhub.openexplosion = false
+	end
+end)
+local autosword = Tabs.Main:AddToggle("autosword", {Title = "Auto Open Sword Crate", Default = false })
+autosword:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.opensword = true
+	else
+		rubyhub.opensword = false
+	end
 end)
 
-KillingCheats:CreateButton("Auto Win X", function()
-getgenv().god = true
-while getgenv().god and task.wait() do
-    for _,ball in next, workspace.Balls:GetChildren() do
-        if ball then
-            if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position, ball.Position)
-                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Highlight") then
-                    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame * CFrame.new(0, 0, (ball.Velocity).Magnitude * -0.5)
-                    game:GetService("ReplicatedStorage").Remotes.ParryButtonPress:Fire()
-                end
-            end
-        end
-    end
-end
+Tabs.Main:AddSection("Automation")
+local autovoteffa = Tabs.Main:AddToggle("autovoteffa", {Title = "Auto Vote for FFA", Default = false })
+autovoteffa:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.selectffa = true
+	else
+		rubyhub.selectffa = false
+	end
+end)
+local autovote2t = Tabs.Main:AddToggle("autovote2t", {Title = "Auto Vote for 2 Teams", Default = false })
+autovoteffa:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.select2v2 = true
+	else
+		rubyhub.select2v2 = false
+	end
+end)
+local autovote4t = Tabs.Main:AddToggle("autovote4t", {Title = "Auto Vote for 4 Teams", Default = false })
+autovote4t:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.select4v4 = true
+	else
+		rubyhub.select4v4 = false
+	end
+end)
+local autospin = Tabs.Main:AddToggle("autospin", {Title = "Auto Spin", Default = false })
+autospin:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.autospin = true
+	else
+		rubyhub.autospin = false
+	end
+end)
+Tabs.Main:AddSection("Cooldown")
+local skipcasec = Tabs.Main:AddToggle("skipcasec", {Title = "Disable Case Cooldown", Default = false })
+skipcasec:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.skipcasecooldown = true
+	else
+		rubyhub.skipcasecooldown = false
+	end
+end)
+Tabs.Main:AddSection("Codes")
+Tabs.Main:AddButton({
+	Title = "Redeem all Codes",
+	Description = "Redeems all available Codes",
+	Callback = function()
+		local codelist = {
+			"UPDATETHREE",
+			"1MLIKES",
+			"HOTDOG10K"
+		}
+		for i, code in pairs(codelist) do
+			game:GetService("ReplicatedStorage").Remotes.SubmitCodeRequest:InvokeServer(code)
+		end
+	end
+})
+Tabs.farmsettings:AddSection("Don't Kill")
+local whitelistedplayers = Tabs.farmsettings:AddParagraph({
+	Title = "Don't Kill list",
+	Content = "none"
+})
+local whitelistplayer = Tabs.farmsettings:AddInput("whitelistplayer", {
+	Title = "Don't kill Player on standoff",
+	Default = "",
+	Placeholder = "Short username or displayname allowed",
+	Numeric = false,
+	Finished = true,
+	Callback = function(playername)
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.find(v.Name:lower(), playername:lower()) or string.find(v.DisplayName:lower(), playername:lower()) then
+				table.insert(rubyhub.dontkillonstandoff, v.Name)
+			end
+		end
+	end
+})
+local unwhitelistplayer = Tabs.farmsettings:AddInput("unwhitelist", {
+	Title = "Remove Player from List",
+	Default = "",
+	Placeholder = "Short username or displayname allowed",
+	Numeric = false,
+	Finished = true,
+	Callback = function(playername)
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.find(v.Name:lower(), playername:lower()) or string.find(v.DisplayName:lower(), playername:lower()) then
+				local newtable = {}
+				for a, b in pairs(rubyhub.dontkillonstandoff) do
+					if b ~= v.Name then
+	
+					table.insert(newtable, b)
+					end
+				end
+				rubyhub.dontkillonstandoff = newtable
+			end
+		end
+	end
+})
+
+Tabs.farmsettings:AddButton({
+	Title = "Clear List",
+	Description = "Clears don't kill List",
+	Callback = function()
+		rubyhub.dontkillonstandoff = {}
+	end
+})
+Tabs.farmsettings:AddSection("Auto Parry Settings")
+local stayundergroundtoggle = Tabs.farmsettings:AddToggle("stayunderground", {Title = "Stay Underground", Default = true })
+stayundergroundtoggle:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.stayunderground = true
+	else
+		rubyhub.stayunderground = false
+	end
+end)
+local legitap = Tabs.farmsettings:AddToggle("legitmode", {Title = "Legit Auto Parry Mode", Default = false })
+legitap:OnChanged(function(toggled)
+	if toggled then
+		rubyhub.legitautoparry = true
+	else
+		rubyhub.legitautoparry = false
+	end
 end)
 
-KillingCheats:CreateButton("Auto Spam X", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Code4Zaaa/X7Project/main/Game/AutoParryOnly"))();
-end)
-
-KillingCheats:CreateButton("Auto Detect Spam X", function()
-getgenv().AutoDetectSpam = true
-
---///////////////////////////////////////////////////////////////////--
-
-local Alive = workspace:WaitForChild("Alive", 9e9)
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Remotes = ReplicatedStorage:WaitForChild("Remotes", 9e9)
-local ParryAttempt = Remotes:WaitForChild("ParryAttempt", 9e9)
-local Balls = workspace:WaitForChild("Balls", 9e9)
-
---///////////////////////////////////////////////////////////////////--
-
-local function get_ProxyPlayer()
-  local Distance = math.huge
-  local plrRP = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
-  local PlayerReturn = nil
-  
-  for _,plr1 in pairs(Alive:GetChildren()) do
-    if plr1:FindFirstChild("Humanoid") and plr1.Humanoid.Health > 50 then
-      if plr1.Name ~= Player.Name and plrRP and plr1:FindFirstChild("HumanoidRootPart") then
-        local magnitude = (plr1.HumanoidRootPart.Position - plrRP.Position).Magnitude
-        if magnitude <= Distance then
-          Distance = magnitude
-          PlayerReturn = plr1
-        end
-      end
-    end
-  end
-  return PlayerReturn
-end
-
-local function SuperClick()
-  task.spawn(function()
-    if IsAlive() and #Alive:GetChildren() > 1 then
-      local args1 = 0.5
-      local args2 = CFrame.new()
-      local args3 = {["enzo"] = Vector3.new()}
-      local args4 = {500, 500}
-      
-      if args1 and args2 and args3 and args4 then
-        ParryAttempt:FireServer(args1, args2, args3, args4)
-      end
-    end
-  end)
-end
 
 task.spawn(function()
-  while task.wait() do
-    if getgenv().SpamClickA and getgenv().AutoDetectSpam then
-      SuperClick()
-    end
-  end
+	while task.wait() do
+		local toset = "";
+		for i, walterwhite in pairs(rubyhub.dontkillonstandoff) do
+			toset = toset .. "\n" .. walterwhite
+		end
+		whitelistedplayers:SetDesc(toset)
+		if rubyhub.openexplosion then
+			game:GetService("ReplicatedStorage").Remotes.Store.RequestOpenExplosionBox:InvokeServer()
+		end
+		if rubyhub.opensword then
+			game:GetService("ReplicatedStorage").Remotes.Store.RequestOpenSwordBox:InvokeServer()
+		end
+		if rubyhub.selectffa then
+			game:GetService("ReplicatedStorage").Remotes.UpdateVotes:FireServer("ffa")
+		elseif rubyhub.select2v2 then
+			game:GetService("ReplicatedStorage").Remotes.UpdateVotes:FireServer("2t")
+		elseif rubyhub.select4v4 then
+			game:GetService("ReplicatedStorage").Remotes.UpdateVotes:FireServer("4t")
+		end
+		if rubyhub.skipcasecooldown then
+			game:GetService("ReplicatedStorage").Remotes.OpeningCase:FireServer(false)
+		end
+		if rubyhub.autospin then
+			game:GetService("ReplicatedStorage").Remotes.useSpin:InvokeServer()
+		end
+	end
 end)
 
-local ParryCounter = 0
-local DetectSpamDistance = 0
-
-local function GetBall(ball)
-  local Target = ""
-  
-  ball:GetPropertyChangedSignal("Position"):Connect(function()
-    local PlayerPP = Player and Player.Character and Player.Character.PrimaryPart
-    local NearestPlayer = get_ProxyPlayer()
-    
-    if ball and PlayerPP and NearestPlayer and NearestPlayer.PrimaryPart then
-      local PlayerDistance = (PlayerPP.Position - NearestPlayer.PrimaryPart.Position).Magnitude
-      local BallDistance = (PlayerPP.Position - ball.Position).Magnitude
-      
-      DetectSpamDistance = 25 + math.clamp(ParryCounter / 3, 0, 25)
-      
-      if ParryCounter > 2 and PlayerDistance < DetectSpamDistance and BallDistance < 55 then
-        getgenv().SpamClickA = true
-      else
-        getgenv().SpamClickA = false
-      end
-    end
-  end)
-  ball:GetAttributeChangedSignal("target"):Connect(function()
-    Target = ball:GetAttribute("target")
-    local NearestPlayer = get_ProxyPlayer()
-    
-    if NearestPlayer then
-      if Target == NearestPlayer.Name or Target == Player.Name then
-        ParryCounter = ParryCounter + 1
-      else
-        ParryCounter = 0
-      end
-    end
-  end)
-end
-
-for _,ball in pairs(Balls:GetChildren()) do
-  if ball and not ball:GetAttribute("realBall") then
-    return
-  end
-  
-  GetBall(ball)
-end
-
-Balls.ChildAdded:Connect(function(ball)
-  if not getgenv().AutoDetectSpam then
-    return
-  elseif ball and not ball:GetAttribute("realBall") then
-    return
-  end
-  
-  getgenv().SpamClickA = false
-  ParryCounter = 0
-  GetBall(ball)
-end)
-end)
-
-KillingCheats:CreateButton("Made by Neoncat", function()
-print("SuckMyD")
-end)
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("Ruby Hub")
+SaveManager:SetFolder("Blade Ball (Premium)")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+Window:SelectTab(1)
+SaveManager:LoadAutoloadConfig()
